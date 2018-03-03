@@ -1,2 +1,2 @@
 # ListAdapterSample
-Sample project using ListAdapter for PagingLibrary.
+Sample project using ListAdapter of Support Library.
