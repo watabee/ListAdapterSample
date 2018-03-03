@@ -2,8 +2,8 @@ package jp.watabee.listadaptersample
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.recyclerview.extensions.DiffCallback
 import android.support.v7.recyclerview.extensions.ListAdapter
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -21,14 +21,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        adapter.setList(users)
+        adapter.submitList(users)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
         findViewById<Button>(R.id.button).setOnClickListener {
-            adapter.setList(users.shuffled())
+            adapter.submitList(users.shuffled())
         }
     }
 }
@@ -51,12 +51,12 @@ internal class UserViewHolder(parent: ViewGroup) :
     }
 }
 
-private val DIFF_CALLBACK = object : DiffCallback<User>() {
+private val ITEM_CALLBACK = object : DiffUtil.ItemCallback<User>() {
     override fun areItemsTheSame(oldItem: User, newItem: User): Boolean = oldItem.id == newItem.id
     override fun areContentsTheSame(oldItem: User, newItem: User): Boolean = oldItem == newItem
 }
 
-internal class UserAdapter : ListAdapter<User, UserViewHolder>(DIFF_CALLBACK) {
+internal class UserAdapter : ListAdapter<User, UserViewHolder>(ITEM_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = UserViewHolder(parent)
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) =
         holder.bind(getItem(position))

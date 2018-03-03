@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "jp.watabee.listadaptersample"
         minSdkVersion 16
@@ -21,8 +21,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:recyclerview-v7:26.1.0'
-    implementation "android.arch.paging:runtime:1.0.0-alpha5"
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    implementation 'com.android.support:recyclerview-v7:27.1.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
 }
